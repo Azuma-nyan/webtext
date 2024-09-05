@@ -31,12 +31,14 @@ def process_string_le(file_name, delimiter):
   else:
     # 区切り文字がない場合の別の処理
     result = "区切りなし"
+  return result
 
 def chapter(destination_path, input_path, delimiter):
   if_chapter = process_string_le(input_path, delimiter)
       
-  # 章があるかないか、ifある、elseない
+  # 章があるかないか
   if not(isinstance(if_chapter, str)):
+    # 章ある
     chapter_num = 1
     story_num = 0
     if_chapter[chapter_num] = if_chapter[1][:if_chapter[1].rfind(".txt")]
@@ -44,6 +46,7 @@ def chapter(destination_path, input_path, delimiter):
     make_nth_parent_directory(os.path.join(destination_path, if_chapter[chapter_num]), "章")
     return os.path.join(if_chapter[chapter_num], if_chapter[story_num])
   else:
+    # 章ない
     return input_path
 
 
